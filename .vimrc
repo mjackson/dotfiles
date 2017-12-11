@@ -38,6 +38,9 @@ let mapleader=","
 let g:prettier#autoformat=0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 
+" Use JSON in .babelrc files
+autocmd BufRead,BufNewFile .babelrc setfiletype json
+
 " Allow JSX in .js files
 let g:jsx_ext_required=0
 
