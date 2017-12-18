@@ -4,6 +4,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
+Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'wincent/command-t', {
@@ -24,6 +26,9 @@ set number
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+" Enable using the mouse
+set mouse=a
 
 set termguicolors
 
@@ -47,9 +52,12 @@ let g:jsx_ext_required=0
 " Ignore node_modules with command-t
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 
+" Use babylon parser with prettier
+let g:prettier#config#parser="babylon"
+
+set hlsearch
 " Clear highlighting for the current search with <Leader>/
 " Adapted from https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting/657484#657484
-set hlsearch
 nnoremap <Leader>/ :let @/=""<return>
 
 " Mappings for moving lines and preserving indentation
@@ -61,14 +69,25 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Use babylon parser with Prettier
-let g:prettier#config#parser="babylon"
+" Use %% on the command line to expand to the dir of the current file
+cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
 
-" Enable using the mouse
-set mouse=a
+" Mappings for quickly opening files
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
-" Change the cursor shape in xterm
-if &term =~# 'xterm'
+if $TERM_PROGRAM =~ "iTerm"
+  " Change cursor shape in iTerm2.app
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7" " Underline in replace mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+
+  " Close command-t using <ESC>
+  let g:CommandTCancelMap=['<ESC>', '<C-c>']
+elseif &term =~# "xterm"
+  " Change cursor shape in xterm
   let &t_SI="\<Esc>[5 q" " Blinking bar in insert mode
   let &t_SR="\<Esc>[1 q" " Blinking block in replace mode
   let &t_EI="\<Esc>[2 q" " Solid block in normal mode
