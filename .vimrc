@@ -63,3 +63,13 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Use babylon parser with Prettier
 let g:prettier#config#parser="babylon"
+
+" Enable using the mouse
+set mouse=a
+
+" Change the cursor shape in xterm
+if &term =~# 'xterm'
+  let &t_SI="\<Esc>[5 q" " Blinking bar in insert mode
+  let &t_SR="\<Esc>[1 q" " Blinking block in replace mode
+  let &t_EI="\<Esc>[2 q" " Solid block in normal mode
+endif
