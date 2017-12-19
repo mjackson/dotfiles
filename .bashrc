@@ -16,8 +16,6 @@ fi
 
 
 # Put your fun stuff here.
-sudo mount -i -o remount,exec /home/chronos/user
-
 alias ll="ls -al"
 
 export PAGER=/usr/local/bin/less
@@ -32,3 +30,8 @@ export NVM_DIR="$HOME/.nvm"
 # Load base16 shell helpers
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# Start new shells in the $HOME directory
+if [[ "$PWD" == "/" ]]; then
+	cd $HOME
+fi
