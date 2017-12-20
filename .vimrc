@@ -19,15 +19,31 @@ Plug 'mxw/vim-jsx'
 
 call plug#end()
 
+" Do not wrap long lines
 set nowrap
+
+" Highlight the line with the cursor
 set cursorline
+
+" Show line numbers
 set number
+
+" Indent using spaces instead of tabs
 set expandtab
+
+" The number of spaces to use for each indent
 set shiftwidth=2
+
+" Number of spaces to use for a <Tab> during editing operations
 set softtabstop=2
+
+" Enable the mouse for all modes
 set mouse=a
+
+" Keep .swp files in uniquely-named files in $HOME/.vim
+set directory=$HOME/.vim/swapfiles//
+
 set termguicolors
-set hlsearch
 
 if filereadable(expand("~/.vimrc_background"))
   "let base16colorspace=256
@@ -51,6 +67,8 @@ let g:jsx_ext_required=0
 " Ignore node_modules with command-t
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 
+" Highlight search matches
+set hlsearch
 " Clear highlighting for the current search with <Leader>/
 " Adapted from https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting/657484#657484
 nnoremap <Leader>/ :let @/=""<return>
