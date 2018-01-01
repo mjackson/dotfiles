@@ -52,11 +52,11 @@ endif
 
 let mapleader=","
 
-" Use babylon parser with prettier
-let g:prettier#config#parser="babylon"
 " Run prettier asynchronously before saving
 let g:prettier#autoformat=0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+" Use babylon parser with prettier
+let g:prettier#config#parser="babylon"
 
 " Use JSON in .babelrc files
 autocmd BufRead,BufNewFile .babelrc setfiletype json
@@ -92,7 +92,7 @@ map <Leader>ev :vsp %%
 map <Leader>et :tabe %%
 
 if $TERM_PROGRAM =~ "iTerm"
-  " Close command-t using <ESC>
+  " Close command-t using <Esc>
   let g:CommandTCancelMap=["<Esc>", "<C-c>"]
 
   " Change cursor shape in iTerm2.app
