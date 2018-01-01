@@ -71,7 +71,7 @@ let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 set hlsearch
 " Clear highlighting for the current search with <Leader>/
 " Adapted from https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting/657484#657484
-nnoremap <Leader>/ :let @/=""<return>
+nnoremap <Leader>/ :let @/=""<Return>
 
 " Mappings for moving lines and preserving indentation
 " See http://vim.wikia.com/wiki/Moving_lines_up_or_down
@@ -86,10 +86,10 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
 
 " Mappings for quickly opening files
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+map <Leader>ew :e %%
+map <Leader>es :sp %%
+map <Leader>ev :vsp %%
+map <Leader>et :tabe %%
 
 if $TERM_PROGRAM =~ "iTerm"
   " Close command-t using <ESC>
