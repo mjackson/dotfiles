@@ -2,7 +2,13 @@
 
 set -e
 
-source setup-helpers
+uname=`uname`
+platform="unknown"
+if [[ $uname == "Darwin" ]]; then
+   platform="macos"
+elif [[ $uname == "Linux" ]]; then
+   platform="linux"
+fi
 
 if [ "$platform" == "macos" ]; then
   ./setup-macos

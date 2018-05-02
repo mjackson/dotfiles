@@ -7,13 +7,6 @@ fancy_echo() {
   printf "\n$fmt\n" "$@"
 }
 
-platform='unknown'
-if [[ `uname` == 'Darwin' ]]; then
-   platform='macos'
-elif [[ `uname` == 'Linux' ]]; then
-   platform='linux'
-fi
-
 dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 install_dotfile() {
