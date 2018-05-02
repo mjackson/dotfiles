@@ -10,6 +10,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'wincent/command-t', {
   \ 'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make' }
+Plug 'wincent/terminus'
 Plug 'prettier/vim-prettier', {
  \ 'do': 'yarn install',
  \ 'for': ['javascript', 'typescript', 'css', 'json', 'graphql', 'markdown'] }
@@ -36,9 +37,6 @@ set shiftwidth=2
 
 " Number of spaces to use for a <Tab> during editing operations
 set softtabstop=2
-
-" Enable the mouse for all modes
-set mouse=a
 
 " Enable yanking to the clipboard
 set clipboard=unnamed
@@ -110,18 +108,3 @@ noremap <buffer> <silent> k gk
 noremap <buffer> <silent> j gj
 noremap <buffer> <silent> 0 g0
 noremap <buffer> <silent> $ g$
-
-if $TERM_PROGRAM =~ "iTerm"
-  " Close command-t using <Esc>
-  let g:CommandTCancelMap=["<Esc>", "<C-c>"]
-
-  " Change cursor shape in iTerm2.app
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Bar in insert mode
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7" " Underline in replace mode
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-elseif &term =~# "xterm"
-  " Change cursor shape in xterm
-  let &t_SI="\<Esc>[5 q" " Blinking bar in insert mode
-  let &t_SR="\<Esc>[1 q" " Blinking block in replace mode
-  let &t_EI="\<Esc>[2 q" " Block in normal mode
-endif
