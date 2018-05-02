@@ -17,3 +17,4 @@ fi
 ./setup-bash
 ./setup-git
 ./setup-vim
+./setup-node
