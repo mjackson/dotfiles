@@ -2,52 +2,8 @@
 
 set -e
 
-source setup-helpers
-
 # Increase the limit for max opened files.
 sudo launchctl limit maxfiles 2048 unlimited
-
-# Install homebrew.
-homebrew_prefix="/usr/local"
-
-if [ -d "$homebrew_prefix" ]; then
-  if ! [ -r "$homebrew_prefix" ]; then
-    sudo chown -R "$LOGNAME:admin" /usr/local
-  fi
-else
-  sudo mkdir "$homebrew_prefix"
-  sudo chflags norestricted "$homebrew_prefix"
-  sudo chown -R "$LOGNAME:admin" "$homebrew_prefix"
-fi
-
-if ! command -v brew >/dev/null; then
-  fancy_echo "Installing Homebrew ..."
-  curl -fsS \
-    'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-fi
-
-fancy_echo "Updating Homebrew formulae ..."
-brew update
-
-brew bundle --file=- <<EOF
-tap "caskroom/cask"
-
-# Unix
-brew "git"
-brew "vim"
-brew "openssl"
-brew "watchman"
-brew "curl"
-brew "less"
-brew "wget"
-
-# Programming language prerequisites and package managers
-brew "coreutils"
-cask "gpg-suite"
-brew "libyaml" # should come after openssl
-brew "nvm"
-brew "yarn"
-EOF
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -56,7 +12,7 @@ osascript -e 'tell application "System Preferences" to quit'
 # Ask for the administrator password upfront
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+# Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
@@ -269,7 +225,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desk
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
@@ -370,8 +326,8 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+# Set the icon size of Dock items to 42 pixels
+defaults write com.apple.dock tilesize -int 42
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
