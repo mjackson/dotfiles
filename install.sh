@@ -28,7 +28,7 @@ fi
 
 if [ ! -d "$HOME/.config" ]; then
   fancy_echo "Creating $HOME/.config ..."
-  mkdir $HOME/.config
+  mkdir -p $HOME/.config
 fi
 
 if [ ! -d "$HOME/.config/base16-shell" ]; then
@@ -49,6 +49,11 @@ fi
 if [ ! -d "$HOME/.vim/autoload" ]; then
   fancy_echo "Creating $HOME/.vim/autoload ..."
   ln -s $DIR/.vim/autoload $HOME/.vim/autoload
+fi
+
+if [ ! -d "$HOME/.vim/swapfiles" ]; then
+  fancy_echo "Creating $HOME/.vim/swapfiles ..."
+  mkdir -p $HOME/.vim/swapfiles
 fi
 
 if [ ! -f "$HOME/.vimrc" ]; then
