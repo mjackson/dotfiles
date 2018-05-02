@@ -12,7 +12,7 @@ fi
 
 if [ "$platform" == "macos" ]; then
   ./setup-homebrew
-  ./setup-macos
+  ./setup-mac
 fi
 
 ./setup-bash
