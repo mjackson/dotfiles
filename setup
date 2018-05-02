@@ -18,12 +18,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ ! -f "$HOME/.bash_profile" ]; then
   fancy_echo "Creating $HOME/.bash_profile ..."
-  ln -s $DIR/.bash_profile $HOME/.bash_profile
+  ln -s $DIR/bash_profile $HOME/.bash_profile
 fi
 
 if [ ! -f "$HOME/.bashrc" ]; then
   fancy_echo "Creating $HOME/.bashrc ..."
-  ln -s $DIR/.bashrc $HOME/.bashrc
+  ln -s $DIR/bashrc $HOME/.bashrc
 fi
 
 if [ ! -d "$HOME/.config" ]; then
@@ -31,14 +31,14 @@ if [ ! -d "$HOME/.config" ]; then
   mkdir -p $HOME/.config
 fi
 
-if [ ! -d "$HOME/.config/base16-shell" ]; then
+if [ ! -f "$HOME/.config/base16-shell" ]; then
   fancy_echo "Creating $HOME/.config/base16-shell ..."
-  ln -s $DIR/.config/base16-shell $HOME/.config/base16-shell
+  ln -s $DIR/config/base16-shell $HOME/.config/base16-shell
 fi
 
 if [ ! -f "$HOME/.gitignore" ]; then
   fancy_echo "Creating $HOME/.gitignore ..."
-  ln -s $DIR/.gitignore $HOME/.gitignore
+  ln -s $DIR/gitignore $HOME/.gitignore
 fi
 
 if [ ! -d "$HOME/.vim" ]; then
@@ -48,7 +48,7 @@ fi
 
 if [ ! -d "$HOME/.vim/autoload" ]; then
   fancy_echo "Creating $HOME/.vim/autoload ..."
-  ln -s $DIR/.vim/autoload $HOME/.vim/autoload
+  ln -s $DIR/vim/autoload $HOME/.vim/autoload
 fi
 
 if [ ! -d "$HOME/.vim/swapfiles" ]; then
@@ -58,7 +58,7 @@ fi
 
 if [ ! -f "$HOME/.vimrc" ]; then
   fancy_echo "Creating $HOME/.vimrc ..."
-  ln -s $DIR/.vimrc $HOME/.vimrc
+  ln -s $DIR/vimrc $HOME/.vimrc
 fi
 
 HOMEBREW_PREFIX="/usr/local"
@@ -103,5 +103,5 @@ brew "nvm"
 brew "yarn"
 EOF
 
-./.setup-git
-./.setup-vim
+./setup-git
+./setup-vim
