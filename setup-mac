@@ -341,7 +341,7 @@ defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
 # Show indicator lights for open applications in the Dock
-defaults write com.apple.dock show-process-indicators -bool true
+#defaults write com.apple.dock show-process-indicators -bool true
 
 # Wipe all (default) app icons from the Dock
 # This is only really useful when setting up a new Mac, or if you don’t use
@@ -349,7 +349,7 @@ defaults write com.apple.dock show-process-indicators -bool true
 defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
-defaults write com.apple.dock static-only -bool true
+#defaults write com.apple.dock static-only -bool true
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
