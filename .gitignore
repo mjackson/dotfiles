@@ -1,2 +1,14 @@
-/.vim/.netrwhist
-/.vim/plugs
+.DS_Store
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+*.pyc
+.bundle
+.env
+.rvmrc
+.ruby-version
+
+node_modules
+npm-debug.log
+yarn-error.log
