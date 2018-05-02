@@ -11,16 +11,16 @@ Plug 'ervandew/supertab'
 Plug 'wincent/command-t', {
   \ 'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make' }
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+ \ 'do': 'yarn install',
+ \ 'for': ['javascript', 'typescript', 'css', 'json', 'graphql', 'markdown'] }
 Plug 'chriskempson/base16-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 call plug#end()
 
-" Do not wrap long lines
-set nowrap
+" Wrap long lines on word boundaries
+set wrap linebreak
 
 " Highlight the line with the cursor
 set cursorline
@@ -40,6 +40,9 @@ set softtabstop=2
 " Enable the mouse for all modes
 set mouse=a
 
+" Enable yanking to the clipboard
+set clipboard=unnamed
+
 " Keep .swp files in uniquely-named files in $HOME/.vim
 set directory=$HOME/.vim/swapfiles//
 
@@ -52,14 +55,25 @@ endif
 
 let mapleader=","
 
-" Run prettier asynchronously before saving
+" Don't use prettier's auto-formatting
 let g:prettier#autoformat=0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
-" Use babylon parser with prettier
+
+augroup prettier
+  " Run prettier before saving
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md Prettier
+augroup END
+
+" Make vim-prettier use prettier defaults
+let g:prettier#config#single_quote="false"
+let g:prettier#config#bracket_spacing="true"
+let g:prettier#config#jsx_bracket_same_line="false"
+let g:prettier#config#trailing_comma="none"
 let g:prettier#config#parser="babylon"
 
-" Use JSON in .babelrc files
-autocmd BufRead,BufNewFile .babelrc setfiletype json
+augroup filetypes
+  " Use JSON in .babelrc files
+  autocmd BufRead,BufNewFile .babelrc setfiletype json
+augroup END
 
 " Allow JSX in .js files
 let g:jsx_ext_required=0
@@ -75,12 +89,12 @@ nnoremap <Leader>/ :let @/=""<Return>
 
 " Mappings for moving lines and preserving indentation
 " See http://vim.wikia.com/wiki/Moving_lines_up_or_down
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Use %% on the command line to expand to the dir of the current file
 cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
@@ -90,6 +104,12 @@ map <Leader>ew :e %%
 map <Leader>es :sp %%
 map <Leader>ev :vsp %%
 map <Leader>et :tabe %%
+
+" Mappings to adjust movement keys when wrapping
+noremap <buffer> <silent> k gk
+noremap <buffer> <silent> j gj
+noremap <buffer> <silent> 0 g0
+noremap <buffer> <silent> $ g$
 
 if $TERM_PROGRAM =~ "iTerm"
   " Close command-t using <Esc>
