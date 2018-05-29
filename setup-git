@@ -4,6 +4,10 @@ set -e
 
 source setup-helpers
 
+# Install git
+# TODO: Make this cross-platform
+brew install git
+
 install_dotfile "gitignore"
 
 git config --global alias.br branch

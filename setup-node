@@ -2,6 +2,17 @@
 
 set -e
 
+# Install nvm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+# Install and use node version 10 by default
+nvm install 10
+nvm alias default 10
+
+# Install yarn
+curl -o- -L https://yarnpkg.com/install.sh | bash
+
+# Install a few packages globally
 yarn global add create-react-app
 yarn global add prettier
 yarn global add serve
