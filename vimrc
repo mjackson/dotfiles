@@ -20,6 +20,9 @@ Plug 'mxw/vim-jsx'
 
 call plug#end()
 
+" Keep .swp files in uniquely-named files in $HOME/.vim/swapfiles
+set directory=$HOME/.vim/swapfiles//
+
 " Wrap long lines on word boundaries
 set wrap linebreak
 
@@ -30,19 +33,16 @@ set cursorline
 set number
 
 " Indent using spaces instead of tabs
-set expandtab
+" set expandtab
 
 " The number of spaces to use for each indent
-set shiftwidth=2
+" set shiftwidth=2
 
 " Number of spaces to use for a <Tab> during editing operations
-set softtabstop=2
+" set softtabstop=2
 
 " Enable yanking to the clipboard
 set clipboard=unnamed
-
-" Keep .swp files in uniquely-named files in $HOME/.vim
-set directory=$HOME/.vim/swapfiles//
 
 set termguicolors
 
