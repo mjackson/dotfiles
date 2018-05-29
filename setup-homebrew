@@ -41,6 +41,7 @@ brew "wget"
 brew "coreutils"
 cask "gpg-suite"
 brew "libyaml" # should come after openssl
-brew "nvm"
-brew "yarn"
 EOF
+
+brew install nvm
+brew install yarn --without-node
