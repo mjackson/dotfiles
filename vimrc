@@ -3,10 +3,11 @@ call plug#begin('~/.vim/plugs')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'mileszs/ack.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'vim-airline/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'wincent/command-t', {
   \ 'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make' }
@@ -33,13 +34,13 @@ set cursorline
 set number
 
 " Indent using spaces instead of tabs
-" set expandtab
-
-" The number of spaces to use for each indent
-" set shiftwidth=2
+set expandtab
 
 " Number of spaces to use for a <Tab> during editing operations
-" set softtabstop=2
+set softtabstop=2
+
+" The number of spaces to use for each indent
+set shiftwidth=2
 
 " Enable yanking to the clipboard
 set clipboard=unnamed
@@ -58,7 +59,7 @@ let g:prettier#autoformat=0
 
 augroup prettier
   " Run prettier before saving
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md Prettier
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,.babelrc Prettier
 augroup END
 
 " Make vim-prettier use prettier defaults
@@ -104,7 +105,7 @@ map <Leader>ev :vsp %%
 map <Leader>et :tabe %%
 
 " Mappings to adjust movement keys when wrapping
-noremap <buffer> <silent> k gk
-noremap <buffer> <silent> j gj
-noremap <buffer> <silent> 0 g0
-noremap <buffer> <silent> $ g$
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
