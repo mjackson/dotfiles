@@ -23,8 +23,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+. "/usr/local/opt/nvm/nvm.sh"
 
 # Load gcloud
 export GCLOUD_DIR="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
