@@ -29,3 +29,6 @@ export NVM_DIR="$HOME/.nvm"
 export GCLOUD_DIR="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 [ -s "$GCLOUD_DIR/completion.bash.inc" ] && . "$GCLOUD_DIR/completion.bash.inc"
 [ -s "$GCLOUD_DIR/path.bash.inc" ] && . "$GCLOUD_DIR/path.bash.inc"
+
+# Load Travis
+[ -f /Users/michael/.travis/travis.sh ] && source /Users/michael/.travis/travis.sh
