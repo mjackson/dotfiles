@@ -16,8 +16,8 @@ Plug 'wincent/command-t', {
 Plug 'wincent/terminus'
 Plug 'sheerun/vim-polyglot'
 Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'json', 'graphql', 'markdown'] }
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'json', 'graphql', 'markdown'] }
 Plug 'chriskempson/base16-vim'
 
 call plug#end()
@@ -43,8 +43,20 @@ set wrap linebreak
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
 
-" Use , as mapleader
+" Use , as <Leader>
 let mapleader=","
+
+" Use %% on the command line to expand to the dir of the current file
+cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
+
+" Quickly open files in split panes
+map <Leader>ew :e %%
+map <Leader>es :sp %%
+map <Leader>ev :vsp %%
+
+" Open :Ack with <Leader>a
+nmap <Leader>a :Ack<Space>
+vmap <Leader>a :Ack<Space>
 
 " Preserve indentation when moving lines
 " See http://vim.wikia.com/wiki/Moving_lines_up_or_down
@@ -53,20 +65,11 @@ nnoremap <C-k> :m .-2<CR>==
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" Adjust movement keys when wrapping
-noremap  <buffer> <silent> k gk
-noremap  <buffer> <silent> j gj
-noremap  <buffer> <silent> 0 g0
-noremap  <buffer> <silent> $ g$
-
-" Mappings for quickly opening files
-map <Leader>ew :e %%
-map <Leader>es :sp %%
-map <Leader>ev :vsp %%
-map <Leader>et :tabe %%
-
-" Use %% on the command line to expand to the dir of the current file
-cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
+" Always move linewise in normal mode
+nmap k gk
+nmap j gj
+nmap 0 g0
+nmap $ g$
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
@@ -112,7 +115,7 @@ let g:prettier#autoformat=0
 
 augroup prettier
   " Run prettier before saving
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,.babelrc,.eslintrc,.prettierrc Prettier
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md,.babelrc,.eslintrc,.prettierrc Prettier
 augroup END
 
 " Make vim-prettier use prettier defaults
