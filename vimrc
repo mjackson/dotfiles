@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 
 call plug#begin('~/.vim/plugs')
@@ -22,7 +22,7 @@ Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Behaviors
 
 " Keep .swp files in uniquely-named files in $HOME/.vim/swapfiles
@@ -37,10 +37,10 @@ set cursorline
 " Enable yanking to the clipboard
 set clipboard=unnamed
 
-" Wrap long lines on word boundaries
-set wrap linebreak
+" Do not wrap long lines by default
+set nowrap
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
 
 " Use , as <Leader>
@@ -50,13 +50,16 @@ let mapleader=","
 cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
 
 " Quickly open files in split panes
-map <Leader>ew :e %%
-map <Leader>es :sp %%
-map <Leader>ev :vsp %%
+noremap <Leader>es :sp %%
+noremap <Leader>ev :vsp %%
+noremap <Leader>ew :e %%
+
+" Toggle wrapping with <Leader>w
+noremap <Leader>w :set wrap!<CR>
 
 " Open :Ack with <Leader>a
-nmap <Leader>a :Ack<Space>
-vmap <Leader>a :Ack<Space>
+nnoremap <Leader>a :Ack<Space>
+vnoremap <Leader>a :Ack<Space>
 
 " Preserve indentation when moving lines
 " See http://vim.wikia.com/wiki/Moving_lines_up_or_down
@@ -66,12 +69,17 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Always move linewise in normal mode
-nmap k gk
-nmap j gj
-nmap 0 g0
-nmap $ g$
+nnoremap k gk
+nnoremap j gj
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatically indent pasted lines
+nnoremap p p=`]
+nnoremap P P=`]
+
+" Re-select the last pasted text
+nnoremap gp `[v`]
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
 
 " Highlight search matches
@@ -84,7 +92,7 @@ nnoremap <Leader>/ :let @/=""<Return>
 " Ignore node_modules with command-t
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File types
 
 augroup filetypes
@@ -95,7 +103,7 @@ augroup END
 " Allow JSX in .js files
 let g:jsx_ext_required=0
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
 
 " Enable gui colors in the terminal
@@ -107,7 +115,7 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Prettier
 
 " Don't use prettier's auto-formatting
