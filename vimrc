@@ -31,9 +31,6 @@ set directory=$HOME/.vim/swapfiles//
 " Show line numbers
 set number
 
-" Highlight the line with the cursor
-set cursorline
-
 " Enable yanking to the clipboard
 set clipboard=unnamed
 
