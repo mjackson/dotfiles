@@ -106,6 +106,9 @@ let g:jsx_ext_required=0
 " Enable gui colors in the terminal
 set termguicolors
 
+" Set highlight background color in visual mode
+hi Visual guibg=Gray30
+
 " Use current terminal color scheme for vim
 if filereadable(expand("~/.vimrc_background"))
   "let base16colorspace=256
