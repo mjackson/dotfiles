@@ -90,30 +90,10 @@ nnoremap <Leader>/ :let @/=""<Return>
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File types
-
-augroup filetypes
-  " Use JSON in .babelrc files
-  autocmd BufRead,BufNewFile .babelrc,.eslintrc,.prettierrc setfiletype json
-augroup END
+" Syntax
 
 " Allow JSX in .js files
 let g:jsx_ext_required=0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors
-
-" Enable gui colors in the terminal
-set termguicolors
-
-" Set highlight background color in visual mode
-hi Visual guibg=Gray30
-
-" Use current terminal color scheme for vim
-if filereadable(expand("~/.vimrc_background"))
-  "let base16colorspace=256
-  source ~/.vimrc_background
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Prettier
@@ -132,3 +112,18 @@ let g:prettier#config#jsx_bracket_same_line="false"
 let g:prettier#config#parser="babylon"
 let g:prettier#config#single_quote="true"
 let g:prettier#config#trailing_comma="none"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+
+" Enable gui colors in the terminal
+set termguicolors
+
+" Set highlight background color in visual mode
+hi Visual guibg=Gray30
+
+" Use current terminal color scheme for vim
+if filereadable(expand("~/.vimrc_background"))
+  "let base16colorspace=256
+  source ~/.vimrc_background
+endif
