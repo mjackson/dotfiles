@@ -34,9 +34,6 @@ set number
 " Enable yanking to the clipboard
 set clipboard=unnamed
 
-" Do not wrap long lines by default
-set nowrap
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
 
@@ -50,13 +47,6 @@ cnoremap %% <C-R>=fnameescape(expand("%:h")) . "/" <CR>
 noremap <Leader>es :sp %%
 noremap <Leader>ev :vsp %%
 noremap <Leader>ew :e %%
-
-" Toggle wrapping with <Leader>w
-noremap <Leader>w :set wrap!<CR>
-
-" Open :Ack with <Leader>a
-nnoremap <Leader>a :Ack<Space>
-vnoremap <Leader>a :Ack<Space>
 
 " Preserve indentation when moving lines
 " See http://vim.wikia.com/wiki/Moving_lines_up_or_down
@@ -77,6 +67,18 @@ nnoremap P P=`]
 nnoremap gp `[v`]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Wrapping
+
+" Do not wrap long lines by default
+set nowrap
+
+" When wrapping, break on word boundaries
+set linebreak
+
+" Toggle wrapping with <Leader>w
+noremap <Leader>w :set wrap!<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
 
 " Highlight search matches
@@ -89,6 +91,10 @@ nnoremap <Leader>/ :let @/=""<Return>
 " Ignore node_modules with command-t
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 
+" Open :Ack with <Leader>a
+nnoremap <Leader>a :Ack<Space>
+vnoremap <Leader>a :Ack<Space>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax
 
@@ -98,14 +104,6 @@ let g:jsx_ext_required=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Prettier
 
-" Don't use prettier's auto-formatting
-let g:prettier#autoformat=0
-
-augroup prettier
-  " Run prettier before saving
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md,.babelrc,.eslintrc,.prettierrc Prettier
-augroup END
-
 " Make vim-prettier use prettier defaults
 let g:prettier#config#bracket_spacing="true"
 let g:prettier#config#jsx_bracket_same_line="false"
@@ -113,14 +111,18 @@ let g:prettier#config#parser="babylon"
 let g:prettier#config#single_quote="true"
 let g:prettier#config#trailing_comma="none"
 
+" Don't use vim-prettier's auto-formatting
+let g:prettier#autoformat=0
+
+" Run prettier async before saving
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.md PrettierAsync
+autocmd BufWritePre .babelrc,.eslintrc,.prettierrc PrettierAsync
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
 
 " Enable gui colors in the terminal
 set termguicolors
-
-" Set highlight background color in visual mode
-hi Visual guibg=Gray30
 
 " Use current terminal color scheme for vim
 if filereadable(expand("~/.vimrc_background"))
