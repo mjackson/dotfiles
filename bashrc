@@ -13,9 +13,11 @@ stty -ixon -ixoff
 alias ls="ls -G"
 alias ll="ls -alG"
 
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="./node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="$PATH":"$HOME/.yarn/bin"
+export PATH="$PATH":"./node_modules/.bin"
+export PATH="$PATH":"/usr/local/opt/mysql-client/bin"
+export PATH="$PATH":"$HOME/Projects/flutter/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # Load base16 shell helpers
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -29,13 +31,13 @@ export PAGER="$HOMEBREW_DIR/bin/less"
 # Set Postgres data dir
 export PGDATA="$HOMEBREW_DIR/var/postgres"
 
-# Load bash completion
+# Load homebrew bash completion
 [ -s "$HOMEBREW_DIR/etc/bash_completion" ] && . "$HOMEBREW_DIR/etc/bash_completion"
 
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Load gcloud
 export GCLOUD_DIR="$HOMEBREW_DIR/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
@@ -43,4 +45,5 @@ export GCLOUD_DIR="$HOMEBREW_DIR/Caskroom/google-cloud-sdk/latest/google-cloud-s
 [ -s "$GCLOUD_DIR/path.bash.inc" ] && . "$GCLOUD_DIR/path.bash.inc"
 
 # Load Travis
-[ -s /Users/michael/.travis/travis.sh ] && . /Users/michael/.travis/travis.sh
+TRAVIS_DIR="$HOME/.travis"
+[ -s "$TRAVIS_DIR/travis.sh" ] && . "$TRAVIS_DIR/travis.sh"
