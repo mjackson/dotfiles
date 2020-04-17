@@ -1,1 +1,1 @@
-au BufNewFile,BufRead .firebaserc,database.rules.json,firebase-rules.json setfiletype json5
+au BufNewFile,BufRead .firebaserc,database.rules.json,firebase-rules.json set filetype=json

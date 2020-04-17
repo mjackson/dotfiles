@@ -1,1 +1,1 @@
-au BufNewFile,BufRead .prettierrc setfiletype json
+au BufNewFile,BufRead .prettierrc set filetype=json

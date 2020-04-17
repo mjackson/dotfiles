@@ -1,1 +1,1 @@
-au BufNewFile,BufRead .babelrc setfiletype json
+au BufNewFile,BufRead .babelrc set filetype=json
